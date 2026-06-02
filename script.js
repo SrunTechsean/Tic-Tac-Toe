@@ -9,8 +9,7 @@ function GameBoard() {
             board[i].push(j);
         }
     }
-    return { board };
-}
 
-const test = GameBoard();
-console.log(test.board);
+    const getBoard = () => board;
+    return { getBoard };
+}
