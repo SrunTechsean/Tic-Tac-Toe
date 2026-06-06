@@ -8,15 +8,12 @@ function GameBoard() {
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < columns; j++) {
-            board[i].push(j);
+            board[i].push(Cell());
         }
     }
 
     // Method to get our board that the UI will need to render
     const getBoard = () => board;
 
-    // Method to print out the board in the console
-    const printBoard = () => console.log(board);
-
-    return { getBoard, printBoard };
+    return { getBoard, printBoard, dropToken };
 }
