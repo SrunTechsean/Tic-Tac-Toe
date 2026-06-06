@@ -25,7 +25,7 @@ function GameBoard() {
 
     const dropToken = (row, column, player) => {
         const cell = board[row][column];
-        if (!cell.getValue() === 0) return;
+        if (cell.getValue() !== 0) return;
         cell.addToken(player);
     };
 
