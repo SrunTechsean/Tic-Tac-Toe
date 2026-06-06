@@ -31,3 +31,27 @@ function GameBoard() {
 
     return { getBoard, printBoard, dropToken };
 }
+
+/*
+ ** A Cell represents one "square" on the board and can have one of
+ ** 0: no token is in the square,
+ ** O: Player One's token,
+ ** X: Player 2's token
+ */
+
+function Cell() {
+    let value = 0;
+
+    // Accept a player's token to change the value of the cell
+    const addToken = (player) => {
+        value = player;
+    };
+
+    // How we will retrieve the current value of this cell through closure
+    const getValue = () => value;
+
+    return {
+        addToken,
+        getValue,
+    };
+}
