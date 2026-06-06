@@ -55,3 +55,26 @@ function Cell() {
         getValue,
     };
 }
+
+/*
+ ** The GameController will be responsible for controlling the
+ ** flow and state of the game's turns, as well as whether
+ ** anybody has won the game
+ */
+
+function GameController(
+    playerOneName = "Player One",
+    playerTwoName = "Player Two",
+) {
+    const board = GameBoard();
+    const players = [
+        {
+            name: playerOneName,
+            token: "O",
+        },
+        {
+            name: playerTwoName,
+            token: "X",
+        },
+    ];
+}
