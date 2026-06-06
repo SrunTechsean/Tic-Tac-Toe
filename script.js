@@ -23,5 +23,11 @@ function GameBoard() {
         console.log(boardWithCellValues);
     };
 
+    const dropToken = (row, column, player) => {
+        const cell = board[row][column];
+        if (!cell.getValue() === 0) return;
+        cell.addToken(player);
+    };
+
     return { getBoard, printBoard, dropToken };
 }
