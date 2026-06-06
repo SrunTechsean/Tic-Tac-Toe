@@ -91,7 +91,21 @@ function GameController(
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
+    const playRound = (row, column) => {
+        console.log(
+            `Adding ${getActivePlayer().name}'s Token into Cell ${row} ${column}...`,
+        );
+        board.dropToken(row, column, getActivePlayer().token);
+
+        switchPlayerTurn();
+        printNewRound();
+    };
+
+    // Initial play game message
+    printNewRound();
+
     return {
+        playRound,
         getActivePlayer,
     };
 }
