@@ -25,7 +25,6 @@ function GameBoard() {
 
     const dropToken = (row, column, player) => {
         const cell = board[row][column];
-        if (cell.getValue() !== 0) return;
         cell.addToken(player);
     };
 
@@ -95,8 +94,13 @@ function GameController(
         console.log(
             `Adding ${getActivePlayer().name}'s Token into Cell ${row} ${column}...`,
         );
-        board.dropToken(row, column, getActivePlayer().token);
 
+        // Check if cell is available
+        if (board.getBoard()[row][column].getValue() !== 0) {
+            return console.log("Cell Already Taken!");
+        }
+
+        board.dropToken(row, column, getActivePlayer().token);
         switchPlayerTurn();
         printNewRound();
     };
@@ -109,3 +113,8 @@ function GameController(
         getActivePlayer,
     };
 }
+
+const game = GameController();
+game.playRound(0, 0);
+game.playRound(0, 0);
+game.playRound(1, 1);
