@@ -102,20 +102,34 @@ function GameController(
 
         board.dropToken(row, column, getActivePlayer().token);
 
-        // TODO: Check for winner
+        // Check For Winner
         const checkWinner = () => {
             const currentBoard = board.getBoard();
             const playerToken = activePlayer.token;
 
-            // Check if any row are 3 in a row
-            for (const row of currentBoard) {
-                const won = row.every((val) => val.getValue() === playerToken);
-                if (won) {
+            for (let i = 0; i < currentBoard.length; i++) {
+                // Checking if every Token in a row (currentBoard[i]) are the same as playerToken
+                const winByRow = currentBoard[i].every(
+                    (token) => token.getValue() === playerToken,
+                );
+
+                // Checking one token from specific row location(row[i]) compare it to other row's token of that same location
+                // to see if they're all the same as playerToken
+                const winByColumn = currentBoard.every(
+                    (row) => row[i].getValue() === playerToken,
+                );
+
+                const winDiagonal = currentBoard.every(
+                    (row, index) =>
+                        row[index].getValue() === playerToken ||
+                        row[row.length - (index + 1)].getValue() ===
+                            playerToken,
+                );
+
+                if (winByRow || winByColumn || winDiagonal) {
                     return console.log(`${activePlayer.name} WIN!`);
                 }
             }
-
-            // Check if any column are 3 in a row
 
             // If there's no winner switch player n tell user it's there turn
             switchPlayerTurn();
@@ -134,3 +148,32 @@ function GameController(
         getActivePlayer,
     };
 }
+
+// const game = GameController();
+// // Testing Row WIN
+// game.playRound(0, 1);
+// game.playRound(2, 2);
+// game.playRound(0, 2);
+// game.playRound(1, 2);
+// game.playRound(0, 0);
+
+// // Testing Column WIN
+// game.playRound(0, 1);
+// game.playRound(0, 2);
+// game.playRound(1, 1);
+// game.playRound(1, 2);
+// game.playRound(2, 1);
+
+// // Testing winDiagonal left to right
+// game.playRound(0, 0);
+// game.playRound(0, 1);
+// game.playRound(1, 1);
+// game.playRound(1, 2);
+// game.playRound(2, 2);
+
+// // Testing winDiagonal right to left
+// game.playRound(0, 2);
+// game.playRound(0, 1);
+// game.playRound(1, 1);
+// game.playRound(1, 2);
+// game.playRound(2, 0);
