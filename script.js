@@ -77,6 +77,7 @@ function GameController(
         },
     ];
 
+    // Make Player 1(player[0]) go first
     let activePlayer = players[0];
 
     const switchPlayerTurn = () => {
@@ -87,7 +88,6 @@ function GameController(
 
     const printNewRound = () => {
         board.printBoard();
-        console.log(`${getActivePlayer().name}'s turn.`);
     };
 
     const playRound = (row, column) => {
@@ -101,8 +101,29 @@ function GameController(
         }
 
         board.dropToken(row, column, getActivePlayer().token);
-        switchPlayerTurn();
+
+        // TODO: Check for winner
+        const checkWinner = () => {
+            const currentBoard = board.getBoard();
+            const playerToken = activePlayer.token;
+
+            // Check if any row are 3 in a row
+            for (const row of currentBoard) {
+                const won = row.every((val) => val.getValue() === playerToken);
+                if (won) {
+                    return console.log(`${activePlayer.name} WIN!`);
+                }
+            }
+
+            // Check if any column are 3 in a row
+
+            // If there's no winner switch player n tell user it's there turn
+            switchPlayerTurn();
+            console.log(`${getActivePlayer().name}'s turn.`);
+        };
+
         printNewRound();
+        checkWinner();
     };
 
     // Initial play game message
@@ -113,8 +134,3 @@ function GameController(
         getActivePlayer,
     };
 }
-
-const game = GameController();
-game.playRound(0, 0);
-game.playRound(0, 0);
-game.playRound(1, 1);
