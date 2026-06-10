@@ -189,7 +189,8 @@ const ScreenController = () => {
                 cellButton.dataset.row = rowIndex;
                 cellButton.dataset.column = colIndex;
 
-                cellButton.textContent = cell.getValue();
+                cellButton.textContent =
+                    cell.getValue() === 0 ? "" : cell.getValue();
                 boardDiv.appendChild(cellButton);
             });
         });
