@@ -79,6 +79,7 @@ function GameController(
 
     // Make Player 1(player[0]) go first
     let activePlayer = players[0];
+    let winner = null;
 
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -114,6 +115,7 @@ function GameController(
             );
 
             if (winByRow || winByColumn || winDiagonal) {
+                winner = activePlayer;
                 console.log(`${activePlayer.name} WIN!`);
                 return true;
             }
@@ -145,12 +147,15 @@ function GameController(
         }
     };
 
+    const getWinner = () => winner;
+
     // Initial play game message
     printNewRound();
 
     return {
         playRound,
         getActivePlayer,
+        getWinner,
         getBoard: board.getBoard(),
     };
 }
@@ -159,9 +164,11 @@ const ScreenController = () => {
     const game = GameController();
     const playerTurnDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
+    const winnerDiv = document.querySelector(".winner");
 
     const updateScreen = () => {
         const activePlayer = game.getActivePlayer();
+        const winner = game.getWinner();
         const board = game.getBoard;
 
         // Remove Current Board
@@ -186,6 +193,12 @@ const ScreenController = () => {
                 boardDiv.appendChild(cellButton);
             });
         });
+
+        if (winner) {
+            winnerDiv.textContent = `${winner.name} is the WINNER!!!`;
+        } else {
+            winnerDiv.textContent = "";
+        }
     };
 
     // Listen for User Input then PlayRound
