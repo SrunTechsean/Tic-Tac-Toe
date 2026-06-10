@@ -156,7 +156,7 @@ function GameController(
         playRound,
         getActivePlayer,
         getWinner,
-        getBoard: board.getBoard(),
+        getBoard: board.getBoard,
     };
 }
 
@@ -169,7 +169,7 @@ const ScreenController = () => {
     const updateScreen = () => {
         const activePlayer = game.getActivePlayer();
         const winner = game.getWinner();
-        const board = game.getBoard;
+        const board = game.getBoard();
 
         // Remove Current Board
         boardDiv.textContent = "";
