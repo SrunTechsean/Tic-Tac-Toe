@@ -159,6 +159,9 @@ const ScreenController = () => {
         const activePlayer = game.getActivePlayer();
         const board = game.getBoard;
 
+        // Remove Current Board
+        boardDiv.textContent = "";
+
         // Print out who's turn it is
         playerTurnDiv.textContent = `It's ${activePlayer.name}'s Turn.`;
 
@@ -178,8 +181,6 @@ const ScreenController = () => {
                 boardDiv.appendChild(cellButton);
             });
         });
-
-        // Listen for User Input
     };
     updateScreen();
 };
