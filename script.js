@@ -154,6 +154,34 @@ const ScreenController = () => {
     const game = GameController();
     const playerTurnDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
+
+    const updateScreen = () => {
+        const activePlayer = game.getActivePlayer();
+        const board = game.getBoard;
+
+        // Print out who's turn it is
+        playerTurnDiv.textContent = `It's ${activePlayer.name}'s Turn.`;
+
+        // Print out current board
+        board.forEach((row, rowIndex) => {
+            row.forEach((cell, colIndex) => {
+                // Anything clickable should be a button!!
+                const cellButton = document.createElement("button");
+                cellButton.classList.add("board__cell");
+
+                // Create a data attribute to identify the column and row
+                // This makes it easier to pass into our `playRound` function
+                cellButton.dataset.row = rowIndex;
+                cellButton.dataset.column = colIndex;
+
+                cellButton.textContent = cell.getValue();
+                boardDiv.appendChild(cellButton);
+            });
+        });
+
+        // Listen for User Input
+    };
+    updateScreen();
 };
 
 ScreenController();
