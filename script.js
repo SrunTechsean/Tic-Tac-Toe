@@ -90,6 +90,38 @@ function GameController(
         board.printBoard();
     };
 
+    // Check For Winner
+    const checkWinner = () => {
+        const currentBoard = board.getBoard();
+        const playerToken = activePlayer.token;
+
+        for (let i = 0; i < currentBoard.length; i++) {
+            // Checking if every Token in a row (currentBoard[i]) are the same as playerToken
+            const winByRow = currentBoard[i].every(
+                (token) => token.getValue() === playerToken,
+            );
+
+            // Checking one token from specific row location(row[i]) compare it to other row's token of that same location
+            // to see if they're all the same as playerToken
+            const winByColumn = currentBoard.every(
+                (row) => row[i].getValue() === playerToken,
+            );
+
+            const winDiagonal = currentBoard.every(
+                (row, index) =>
+                    row[index].getValue() === playerToken ||
+                    row[row.length - (index + 1)].getValue() === playerToken,
+            );
+
+            if (winByRow || winByColumn || winDiagonal) {
+                console.log(`${activePlayer.name} WIN!`);
+                return true;
+            }
+        }
+
+        return false;
+    };
+
     const playRound = (row, column) => {
         console.log(
             `Adding ${getActivePlayer().name}'s Token into Cell ${row} ${column}...`,
@@ -102,42 +134,15 @@ function GameController(
 
         board.dropToken(row, column, getActivePlayer().token);
 
-        // Check For Winner
-        const checkWinner = () => {
-            const currentBoard = board.getBoard();
-            const playerToken = activePlayer.token;
+        printNewRound();
 
-            for (let i = 0; i < currentBoard.length; i++) {
-                // Checking if every Token in a row (currentBoard[i]) are the same as playerToken
-                const winByRow = currentBoard[i].every(
-                    (token) => token.getValue() === playerToken,
-                );
+        const hasWinner = checkWinner();
 
-                // Checking one token from specific row location(row[i]) compare it to other row's token of that same location
-                // to see if they're all the same as playerToken
-                const winByColumn = currentBoard.every(
-                    (row) => row[i].getValue() === playerToken,
-                );
-
-                const winDiagonal = currentBoard.every(
-                    (row, index) =>
-                        row[index].getValue() === playerToken ||
-                        row[row.length - (index + 1)].getValue() ===
-                            playerToken,
-                );
-
-                if (winByRow || winByColumn || winDiagonal) {
-                    return console.log(`${activePlayer.name} WIN!`);
-                }
-            }
-
-            // If there's no winner switch player n tell user it's there turn
+        // If there's no winner switch player n tell user it's there turn
+        if (!hasWinner) {
             switchPlayerTurn();
             console.log(`${getActivePlayer().name}'s turn.`);
-        };
-
-        printNewRound();
-        checkWinner();
+        }
     };
 
     // Initial play game message
@@ -194,7 +199,6 @@ const ScreenController = () => {
         // Rerender screen after every user input
         updateScreen();
     });
-
     updateScreen();
 };
 
