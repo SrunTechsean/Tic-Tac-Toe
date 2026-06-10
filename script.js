@@ -182,6 +182,19 @@ const ScreenController = () => {
             });
         });
     };
+
+    // Listen for User Input then PlayRound
+    boardDiv.addEventListener("click", (e) => {
+        const btn = e.target.closest(".board__cell");
+        if (!btn) return;
+
+        const { row, column } = btn.dataset;
+        game.playRound(row, column);
+
+        // Rerender screen after every user input
+        updateScreen();
+    });
+
     updateScreen();
 };
 
