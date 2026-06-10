@@ -146,8 +146,17 @@ function GameController(
     return {
         playRound,
         getActivePlayer,
+        getBoard: board.getBoard(),
     };
 }
+
+const ScreenController = () => {
+    const game = GameController();
+    const playerTurnDiv = document.querySelector(".turn");
+    const boardDiv = document.querySelector(".board");
+};
+
+ScreenController();
 
 // const game = GameController();
 // // Testing Row WIN
