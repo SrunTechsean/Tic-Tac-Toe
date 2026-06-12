@@ -65,7 +65,7 @@ function GameController(
     playerOneName = "Player One",
     playerTwoName = "Player Two",
 ) {
-    const board = GameBoard();
+    let board = GameBoard();
     const players = [
         {
             name: playerOneName,
@@ -160,6 +160,15 @@ function GameController(
 
     const getWinner = () => winner;
 
+    // TODO:: create a retry function
+    const resetGame = () => {
+        board = GameBoard();
+        winner = null;
+        activePlayer = players[0];
+        printNewRound();
+        console.log("Game have been reset!");
+    };
+
     // Initial play game message
     printNewRound();
 
@@ -168,6 +177,7 @@ function GameController(
         getActivePlayer,
         getWinner,
         getBoard: board.getBoard,
+        resetGame,
     };
 }
 
