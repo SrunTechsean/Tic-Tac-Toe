@@ -97,9 +97,9 @@ function GameController(
         const playerToken = activePlayer.token;
 
         for (let i = 0; i < currentBoard.length; i++) {
-            // Checking if every Token in a row (currentBoard[i]) are the same as playerToken
+            // Checking if every cell in a row (currentBoard[i]) are the same as playerToken
             const winByRow = currentBoard[i].every(
-                (token) => token.getValue() === playerToken,
+                (cell) => cell.getValue() === playerToken,
             );
 
             // Checking one token from specific row location(row[i]) compare it to other row's token of that same location
@@ -108,17 +108,28 @@ function GameController(
                 (row) => row[i].getValue() === playerToken,
             );
 
-            const winDiagonal = currentBoard.every(
-                (row, index) =>
-                    row[index].getValue() === playerToken ||
-                    row[row.length - (index + 1)].getValue() === playerToken,
-            );
-
-            if (winByRow || winByColumn || winDiagonal) {
+            if (winByRow || winByColumn) {
                 winner = activePlayer;
                 console.log(`${activePlayer.name} WIN!`);
                 return true;
             }
+        }
+
+        // Check main diagonal win from left to right
+        const mainDiagonalWin = currentBoard.every(
+            (row, index) => row[index].getValue() === playerToken,
+        );
+
+        // Check anti diagonal win from right to left
+        const antiDiagonalWin = currentBoard.every(
+            (row, index) =>
+                row[row.length - index - 1].getValue() === playerToken,
+        );
+
+        if (mainDiagonalWin || antiDiagonalWin) {
+            winner = activePlayer;
+            console.log(`${activePlayer.name} WIN!`);
+            return true;
         }
 
         return false;
