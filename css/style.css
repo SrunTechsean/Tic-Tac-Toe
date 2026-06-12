@@ -1,5 +1,36 @@
+.game {
+    height: 100vh;
+    background-color: var(--bg-primary);
+}
+
+.game__tittle {
+    display: flex;
+    justify-self: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+    color: var(--white);
+}
 .board {
     display: grid;
+    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
-    height: 80vh;
+    gap: 1.5rem;
+    justify-self: center;
+    width: 50rem;
+    height: 50rem;
+}
+
+.board__cell {
+    font-size: 10rem;
+    background-color: var(--bg-cell);
+    border: none;
+    border-radius: var(--cell-radius);
+}
+
+.turn,
+.winner {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    color: var(--white);
 }
