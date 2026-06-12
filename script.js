@@ -203,7 +203,7 @@ const ScreenController = () => {
     };
 
     // Listen for User Input then PlayRound
-    boardDiv.addEventListener("click", (e) => {
+    const handleClick = (e) => {
         const btn = e.target.closest(".board__cell");
         if (!btn) return;
 
@@ -212,11 +212,19 @@ const ScreenController = () => {
 
         // Rerender screen after every user input
         updateScreen();
-    });
-    updateScreen();
+    };
+
+    const init = () => {
+        boardDiv.addEventListener("click", handleClick);
+        updateScreen();
+        console.log("Game Initialize!");
+    };
+
+    return { init };
 };
 
-ScreenController();
+const game = ScreenController();
+game.init();
 
 // const game = GameController();
 // // Testing Row WIN
