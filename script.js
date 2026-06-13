@@ -223,15 +223,18 @@ const ScreenController = () => {
             row.forEach((cell, colIndex) => {
                 // Anything clickable should be a button!!
                 const cellButton = document.createElement("button");
+                const cellToken = document.createElement("p");
                 cellButton.classList.add("board__cell");
+                cellToken.classList.add("board__token");
 
                 // Create a data attribute to identify the column and row
                 // This makes it easier to pass into our `playRound` function
                 cellButton.dataset.row = rowIndex;
                 cellButton.dataset.column = colIndex;
 
-                cellButton.textContent =
+                cellToken.textContent =
                     cell.getValue() === 0 ? "" : cell.getValue();
+                cellButton.appendChild(cellToken);
                 boardDiv.appendChild(cellButton);
             });
         });

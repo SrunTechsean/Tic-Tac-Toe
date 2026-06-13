@@ -21,10 +21,13 @@
 }
 
 .board__cell {
-    font-size: 10rem;
+    container-type: inline-size;
     background-color: var(--bg-cell);
     border: none;
     border-radius: var(--cell-radius);
+}
+.board__token {
+    font-size: 60cqw;
 }
 
 .turn,
