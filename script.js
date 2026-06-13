@@ -154,6 +154,7 @@ function GameController(
     const playRound = (row, column) => {
         if (gameOver) {
             console.log("Game is over Please Reset the game!");
+            return;
         }
 
         console.log(
