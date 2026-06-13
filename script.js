@@ -160,7 +160,6 @@ function GameController(
 
     const getWinner = () => winner;
 
-    // TODO:: create a retry function
     const resetGame = () => {
         board = GameBoard();
         winner = null;
@@ -176,7 +175,7 @@ function GameController(
         playRound,
         getActivePlayer,
         getWinner,
-        getBoard: board.getBoard,
+        getBoard: () => board.getBoard(),
         resetGame,
     };
 }
@@ -186,6 +185,7 @@ const ScreenController = () => {
     const playerTurnDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
     const winnerDiv = document.querySelector(".winner");
+    const reset = document.querySelector(".game__action--retry");
 
     const updateScreen = () => {
         const activePlayer = game.getActivePlayer();
@@ -235,8 +235,14 @@ const ScreenController = () => {
         updateScreen();
     };
 
+    const handleReset = () => {
+        game.resetGame();
+        updateScreen();
+    };
+
     const init = () => {
         boardDiv.addEventListener("click", handleClick);
+        reset.addEventListener("click", handleReset);
         updateScreen();
         console.log("Game Initialize!");
     };
