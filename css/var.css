@@ -1,7 +1,10 @@
 :root {
     --bg-primary: #1b1b1f;
-    --white: #fff;
-    --cell-radius: 10%;
+    --bg-secondary: #3b3b3f;
     --bg-cell: #dadada;
+
+    --white: #fff;
+
+    --cell-radius: 10%;
     --btn-radius: 20px;
 }
