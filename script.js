@@ -80,6 +80,7 @@ function GameController(
     // Make Player 1(player[0]) go first
     let activePlayer = players[0];
     let winner = null;
+    let gameOver = null;
 
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -128,6 +129,7 @@ function GameController(
 
         if (mainDiagonalWin || antiDiagonalWin) {
             winner = activePlayer;
+            gameOver = true;
             console.log(`${activePlayer.name} WIN!`);
             return true;
         }
@@ -135,7 +137,25 @@ function GameController(
         return false;
     };
 
+    const checkTie = () => {
+        const currentBoard = board.getBoard();
+        const isFull = currentBoard.every((row) =>
+            row.every((cell) => cell.getValue() !== 0),
+        );
+        if (isFull && !winner) {
+            gameOver = true;
+            console.log("It's a Tie");
+            return true;
+        }
+
+        return false;
+    };
+
     const playRound = (row, column) => {
+        if (gameOver) {
+            console.log("Game is over Please Reset the game!");
+        }
+
         console.log(
             `Adding ${getActivePlayer().name}'s Token into Cell ${row} ${column}...`,
         );
@@ -149,20 +169,19 @@ function GameController(
 
         printNewRound();
 
-        const hasWinner = checkWinner();
-
-        // If there's no winner switch player n tell user it's there turn
-        if (!hasWinner) {
-            switchPlayerTurn();
-            console.log(`${getActivePlayer().name}'s turn.`);
-        }
+        if (checkWinner() || checkTie()) return;
+        switchPlayerTurn();
+        console.log(`${getActivePlayer().name}'s turn.`);
     };
 
     const getWinner = () => winner;
 
+    const isGameOver = () => gameOver;
+
     const resetGame = () => {
         board = GameBoard();
         winner = null;
+        gameOver = null;
         activePlayer = players[0];
         printNewRound();
         console.log("Game have been reset!");
@@ -175,6 +194,7 @@ function GameController(
         playRound,
         getActivePlayer,
         getWinner,
+        isGameOver,
         getBoard: () => board.getBoard(),
         resetGame,
     };
@@ -184,7 +204,7 @@ const ScreenController = () => {
     const game = GameController();
     const playerTurnDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
-    const winnerDiv = document.querySelector(".winner");
+    const resultDiv = document.querySelector(".result");
     const reset = document.querySelector(".game__action--retry");
 
     const updateScreen = () => {
@@ -217,9 +237,11 @@ const ScreenController = () => {
         });
 
         if (winner) {
-            winnerDiv.textContent = `${winner.name} is the WINNER!!!`;
+            resultDiv.textContent = `${winner.name} is the WINNER!!!`;
+        } else if (game.isGameOver()) {
+            resultDiv.textContent = "It's a Tie!";
         } else {
-            winnerDiv.textContent = "";
+            resultDiv.textContent = "";
         }
     };
 
@@ -281,3 +303,14 @@ game.init();
 // game.playRound(1, 1);
 // game.playRound(1, 2);
 // game.playRound(2, 0);
+//
+// // Test a Tie
+// game.playRound(0, 2);
+// game.playRound(0, 1);
+// game.playRound(1, 1);
+// game.playRound(1, 2);
+// game.playRound(2, 1);
+// game.playRound(2, 2);
+// game.playRound(0, 0);
+// game.playRound(2, 0);
+// game.playRound(1, 0);
