@@ -215,6 +215,15 @@ const ScreenController = () => {
         // Remove Current Board
         boardDiv.textContent = "";
 
+        boardDiv.style.setProperty(
+            "grid-template-columns",
+            `repeat(${board.length}, 1fr)`,
+        );
+        boardDiv.style.setProperty(
+            "grid-template-rows",
+            `repeat(${board.length}, 1fr)`,
+        );
+
         // Print out who's turn it is
         playerTurnDiv.textContent = `It's ${activePlayer.name}'s Turn.`;
 
