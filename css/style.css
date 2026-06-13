@@ -34,3 +34,25 @@
     padding: 1rem 0;
     color: var(--white);
 }
+
+.game__action {
+    display: flex;
+    justify-content: center;
+}
+
+.btn--primary {
+    height: 3.5rem;
+    aspect-ratio: 3 / 1;
+    font-weight: 600;
+    color: var(--primary);
+    background-color: var(--bg-cell);
+    border: none;
+    border-radius: var(--btn-radius);
+    transition: all 1s ease;
+}
+
+.btn--primary:hover {
+    color: var(--bg-cell);
+    background-color: var(--bg-primary);
+    border: 2px solid var(--bg-cell);
+}
