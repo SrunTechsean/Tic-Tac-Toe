@@ -244,6 +244,19 @@ const ScreenController = () => {
 
                 cellToken.textContent =
                     cell.getValue() === 0 ? "" : cell.getValue();
+
+                if (cellToken.textContent === "O") {
+                    cellToken.style.setProperty(
+                        "color",
+                        "var(--color-playerOne)",
+                    );
+                } else if (cellToken.textContent === "X") {
+                    cellToken.style.setProperty(
+                        "color",
+                        "var(--color-playerTwo)",
+                    );
+                }
+
                 cellButton.appendChild(cellToken);
                 boardDiv.appendChild(cellButton);
             });
