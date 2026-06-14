@@ -39,6 +39,7 @@
     border: none;
     border-radius: var(--cell-radius);
 }
+
 .board__token {
     font-size: 60cqw;
 }
