@@ -20,10 +20,15 @@
     grid-area: main;
 }
 
+.game__display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .board {
     display: grid;
     gap: 1.5rem;
-    justify-self: center;
     width: 50rem;
     height: 50rem;
 }
