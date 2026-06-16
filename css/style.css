@@ -87,6 +87,14 @@
   box-shadow: var(--shadow);
 }
 
+.player__one--name {
+  box-shadow: 0 0 10px var(--color-playerOne);
+}
+
+.player__two--name {
+  box-shadow: 0 0 10px var(--color-playerTwo);
+}
+
 .player__one--name::placeholder,
 .player__two--name::placeholder {
   color: white;
