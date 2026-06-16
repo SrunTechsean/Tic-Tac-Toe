@@ -1,70 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tic Tac Toe</title>
-        <link rel="stylesheet" href="css/var.css">
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="script.js" defer></script>
-    </head>
-    <body>
-        <div class="game">
-            <header class="game__tittle"><h1>Tic Tac Toe</h1></header>
-            <main class="game__body">
-                <div class="game__display">
-                    <h2 class="turn"></h2>
-                    <div class="board"></div>
-                    <div class="result__container">
-                        <h2 class="result"></h2>
-                    </div>
-                </div>
-                <div class="game__action">
-                    <button
-                        class="game__action--retry btn--primary"
-                        type="button"
-                    >
-                        Reset
-                    </button>
-                </div>
-
-                <div class="game__menu">
-                    <form action="#" class="player-name">
-                        <div class="player-name__input">
-                            <label for="playerOne"></label>
-                            <input
-                                type="text"
-                                id="playerOne"
-                                placeholder="Player One"
-                                name="playerOne"
-                            >
-                            <span class="versus">VS</span>
-                            <label for="playerTwo"></label>
-                            <input
-                                placeholder="Player Two"
-                                type="text"
-                                id="playerTwo"
-                                name="playerTwo"
-                            >
-                        </div>
-                        <div class="player-name__submit">
-                            <button type="button" class="btn--primary">
-                                Start Game
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </main>
-            <footer class="game__footer">
-                Made By <a
-                    href="https://github.com/SrunTechsean"
-                    target="_blank"
-                    class="owner__name"
-                >
-                    Srun Techsean
-                </a>
-            </footer>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/var.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="game">
+      <header class="game__tittle"><h1>Tic Tac Toe</h1></header>
+      <main class="game__body">
+        <div class="game__display" style="display: none;">
+          <h2 class="turn"></h2>
+          <div class="board"></div>
+          <div class="result__container">
+            <h2 class="result"></h2>
+          </div>
+          <div class="game__action">
+            <button class="game__action--retry btn--primary" type="button">
+              Reset
+            </button>
+          </div>
         </div>
-    </body>
+
+        <div class="game__menu">
+          <form action="#" class="player-name">
+            <div class="player-name__input">
+              <label class="sr-only" for="playerOne"></label>
+              <input
+                type="text"
+                id="playerOne"
+                placeholder="Player One"
+                name="playerOne"
+                class="player__one--name"
+              >
+              <span class="versus">VS</span>
+              <label class="sr-only" for="playerTwo"></label>
+              <input
+                placeholder="Player Two"
+                type="text"
+                id="playerTwo"
+                name="playerTwo"
+                class="player__two--name"
+              >
+            </div>
+            <div class="player-name__submit">
+              <button type="button" class="btn--primary">Start Game</button>
+            </div>
+          </form>
+        </div>
+      </main>
+      <footer class="game__footer">
+        Made By <a
+          href="https://github.com/SrunTechsean"
+          target="_blank"
+          class="owner__name"
+        >
+          Srun Techsean
+        </a>
+      </footer>
+    </div>
+  </body>
 </html>
