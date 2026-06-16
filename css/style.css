@@ -37,7 +37,7 @@
   container-type: inline-size;
   background-color: var(--bg-cell);
   border: none;
-  border-radius: var(--cell-radius);
+  border-radius: var(--radius-cell);
 }
 
 .board__token {
@@ -65,7 +65,7 @@
 }
 .player-name__input {
   display: flex;
-  gap: 1rem;
+  gap: 4rem;
   align-items: center;
 }
 
@@ -75,8 +75,31 @@
   padding-top: 2rem;
 }
 
+.player__one--name,
+.player__two--name {
+  height: 5rem;
+  font-size: 2rem;
+  color: var(--white);
+  text-align: center;
+  background-color: var(--bg-primary);
+  border: none;
+  border-radius: var(--radius-btn);
+  box-shadow: var(--shadow);
+}
+
+.player__one--name::placeholder,
+.player__two--name::placeholder {
+  color: white;
+}
+
+.player__one--name:focus,
+.player__two--name:focus {
+  outline: none;
+  border-color: var(--bg-primary);
+}
+
 .versus {
-  font-size: 5rem;
+  font-size: 10rem;
   color: var(--white);
 }
 
@@ -88,7 +111,7 @@
   color: var(--primary);
   background-color: var(--bg-cell);
   border: none;
-  border-radius: var(--btn-radius);
+  border-radius: var(--radius-btn);
   transition: all 1s ease;
 }
 
