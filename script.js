@@ -286,8 +286,13 @@ const ScreenController = () => {
     updateScreen();
   };
 
+  const toggleGameView = () => {
+    gameMenuDiv.classList.toggle("hidden");
+    gameDisplayDiv.classList.toggle("hidden");
+  };
+
   const initRound = () => {
-    gameMenuDiv.style.setProperty("display", "none");
+    toggleGameView();
     boardDiv.addEventListener("click", handleClick);
     reset.addEventListener("click", handleReset);
     updateScreen();
