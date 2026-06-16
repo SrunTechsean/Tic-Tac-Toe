@@ -203,10 +203,14 @@ function GameController(
 
 const ScreenController = () => {
   const game = GameController();
+  const gameDisplayDiv = document.querySelector(".game__display");
+  const gameMenuDiv = document.querySelector(".game__menu");
+
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".board");
   const resultDiv = document.querySelector(".result");
   const reset = document.querySelector(".game__action--retry");
+  const startGameBtn = document.querySelector(".btn--start");
 
   const updateScreen = () => {
     const activePlayer = game.getActivePlayer();
@@ -216,6 +220,7 @@ const ScreenController = () => {
     // Remove Current Board
     boardDiv.textContent = "";
 
+    // Give board column and row depending on board.length
     boardDiv.style.setProperty(
       "grid-template-columns",
       `repeat(${board.length}, 1fr)`,
@@ -281,11 +286,16 @@ const ScreenController = () => {
     updateScreen();
   };
 
-  const init = () => {
+  const initRound = () => {
+    gameMenuDiv.style.setProperty("display", "none");
     boardDiv.addEventListener("click", handleClick);
     reset.addEventListener("click", handleReset);
     updateScreen();
     console.log("Game Initialize!");
+  };
+
+  const init = () => {
+    startGameBtn.addEventListener("click", () => initRound());
   };
 
   return { init };
