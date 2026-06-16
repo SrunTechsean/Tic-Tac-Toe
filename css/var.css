@@ -1,12 +1,12 @@
 :root {
-    --bg-primary: #1b1b1f;
-    --bg-secondary: #3b3b3f;
-    --bg-cell: #dadada;
-    --color-playerOne: #2d5a86;
-    --color-playerTwo: #8b0f24;
+  --bg-primary: #1b1b1f;
+  --bg-secondary: #3b3b3f;
+  --bg-cell: #dadada;
+  --color-playerOne: #2d5a86;
+  --color-playerTwo: #8b0f24;
 
-    --white: #fff;
+  --white: #fff;
 
-    --cell-radius: 10%;
-    --btn-radius: 20px;
+  --radius-cell: 10%;
+  --radius-btn: 20px;
 }
