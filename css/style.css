@@ -147,6 +147,10 @@
   text-decoration: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .sr-only {
   position: absolute;
   top: auto;
