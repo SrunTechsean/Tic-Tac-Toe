@@ -275,6 +275,17 @@ const ScreenController = () => {
     }
   };
 
+  const updatePlayerName = () => {
+    const input = {
+      O: document.querySelector("#playerOne"),
+      X: document.querySelector("#playerTwo"),
+    };
+
+    for (const [token, newNameInput] of Object.entries(input)) {
+      if (newNameInput) game.changePlayerName(token, newNameInput.value);
+    }
+  };
+
   // Listen for User Input then PlayRound
   const handleClick = (e) => {
     const btn = e.target.closest(".board__cell");
