@@ -82,6 +82,11 @@ function GameController(
   let winner = null;
   let gameOver = null;
 
+  const changePlayerName = (token, newName) => {
+    const player = players.find((p) => p.token === token);
+    if (player) player.name = newName.trim() || player.name;
+  };
+
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
   };
@@ -192,6 +197,7 @@ function GameController(
   printNewRound();
 
   return {
+    changePlayerName,
     playRound,
     getActivePlayer,
     getWinner,
@@ -293,6 +299,7 @@ const ScreenController = () => {
 
   const initRound = () => {
     toggleGameView();
+    updatePlayerName();
     boardDiv.addEventListener("click", handleClick);
     reset.addEventListener("click", handleReset);
     updateScreen();
