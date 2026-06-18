@@ -311,14 +311,14 @@ const ScreenController = () => {
   const initRound = () => {
     toggleGameView();
     updatePlayerName();
-    boardDiv.addEventListener("click", handleClick);
-    reset.addEventListener("click", handleReset);
     updateScreen();
     console.log("Game Initialize!");
   };
 
   const init = () => {
     startGameBtn.addEventListener("click", () => initRound());
+    boardDiv.addEventListener("click", handleClick);
+    reset.addEventListener("click", handleReset);
   };
 
   return { init };
