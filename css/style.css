@@ -111,12 +111,16 @@
   color: var(--white);
 }
 
+.game__action {
+  display: flex;
+  gap: 2rem;
+}
+
 .btn--primary {
   width: fit-content;
   height: 3.5rem;
   padding: 0 1.2rem;
   font-weight: 600;
-  color: var(--primary);
   background-color: var(--bg-cell);
   border: none;
   border-radius: var(--radius-btn);
@@ -127,6 +131,24 @@
   color: var(--bg-cell);
   background-color: var(--bg-primary);
   border: 2px solid var(--bg-cell);
+}
+
+.btn--secondary {
+  width: fit-content;
+  height: 3.5rem;
+  padding: 0 1.2rem;
+  font-weight: 600;
+  color: var(--white);
+  background-color: var(--bg-primary);
+  border: 2px solid var(--bg-cell);
+  border-radius: var(--radius-btn);
+  transition: all 1s ease;
+}
+
+.btn--secondary:hover {
+  color: var(--bg-primary);
+  background-color: var(--bg-cell);
+  border: none;
 }
 
 .game__footer {
