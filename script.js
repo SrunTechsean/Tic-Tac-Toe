@@ -215,6 +215,9 @@ const ScreenController = () => {
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".board");
   const resultDiv = document.querySelector(".result");
+
+  const returnBtn = document.querySelector(".btn--return");
+  //TODO: rename reset to resetBtn
   const reset = document.querySelector(".game__action--retry");
   const startGameBtn = document.querySelector(".btn--start");
 
@@ -303,6 +306,11 @@ const ScreenController = () => {
     updateScreen();
   };
 
+  const handleReturn = () => {
+    toggleGameView();
+    game.resetGame();
+  };
+
   const toggleGameView = () => {
     gameMenuDiv.classList.toggle("hidden");
     gameDisplayDiv.classList.toggle("hidden");
@@ -319,6 +327,7 @@ const ScreenController = () => {
     startGameBtn.addEventListener("click", () => initRound());
     boardDiv.addEventListener("click", handleClick);
     reset.addEventListener("click", handleReset);
+    returnBtn.addEventListener("click", handleReturn);
   };
 
   return { init };
